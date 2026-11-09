@@ -1431,48 +1431,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "moviebox-tui"
-version = "0.1.29"
-dependencies = [
- "base64 0.23.1",
- "crossterm",
- "dirs",
- "flate2",
- "flexi_logger",
- "futures",
- "hickory-resolver",
- "hmac",
- "image",
- "libc",
- "log",
- "lru 0.19.0",
- "md-5",
- "mimalloc",
- "open",
- "percent-encoding",
- "rand 0.10.3",
- "ratatui",
- "ratatui-crossterm",
- "ratatui-image",
- "reqwest",
- "rmp-serde",
- "rustls",
- "scraper",
- "semver",
- "serde",
- "serde_json",
- "sha2",
- "tar",
- "tempfile",
- "thiserror 2.0.21",
- "tokio",
- "unicode-segmentation",
- "unicode-width",
- "url",
- "zip",
-]
-
-[[package]]
 name = "moxcms"
 version = "0.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3378,6 +3336,48 @@ checksum = "32e45ad4206f6d2479085147f02bc2ef834ac85886624a23575ae137c8aa8156"
 dependencies = [
  "libc",
  "rustix 1.1.4",
+]
+
+[[package]]
+name = "yak-movies"
+version = "0.1.29"
+dependencies = [
+ "base64 0.23.1",
+ "crossterm",
+ "dirs",
+ "flate2",
+ "flexi_logger",
+ "futures",
+ "hickory-resolver",
+ "hmac",
+ "image",
+ "libc",
+ "log",
+ "lru 0.19.0",
+ "md-5",
+ "mimalloc",
+ "open",
+ "percent-encoding",
+ "rand 0.10.3",
+ "ratatui",
+ "ratatui-crossterm",
+ "ratatui-image",
+ "reqwest",
+ "rmp-serde",
+ "rustls",
+ "scraper",
+ "semver",
+ "serde",
+ "serde_json",
+ "sha2",
+ "tar",
+ "tempfile",
+ "thiserror 2.0.21",
+ "tokio",
+ "unicode-segmentation",
+ "unicode-width",
+ "url",
+ "zip",
 ]
 
 [[package]]

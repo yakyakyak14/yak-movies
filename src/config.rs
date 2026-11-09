@@ -53,7 +53,7 @@ impl Default for Config {
     }
 }
 
-pub const APP_NAME: &str = "moviebox-tui";
+pub const APP_NAME: &str = "yak-movies";
 
 static TEST_SANDBOX_DIR: std::sync::LazyLock<Option<PathBuf>> = std::sync::LazyLock::new(|| {
     let is_test_binary = cfg!(test)
@@ -88,7 +88,7 @@ pub fn config_dir() -> Option<PathBuf> {
     if let Some(sandbox) = TEST_SANDBOX_DIR.as_ref() {
         return Some(sandbox.join("config").join(APP_NAME));
     }
-    if let Ok(dir) = std::env::var("MOVIEBOX_CONFIG_DIR") {
+    if let Ok(dir) = std::env::var("YAK_MOVIES_CONFIG_DIR").or_else(|_| std::env::var("MOVIEBOX_CONFIG_DIR")) {
         return Some(PathBuf::from(dir));
     }
     if let Some(dir) = dirs::config_dir() {
@@ -106,7 +106,15 @@ pub fn config_dir() -> Option<PathBuf> {
             return Some(p);
         }
     }
-    if let Some(dir) = dirs::home_dir().map(|h| h.join(".config").join(APP_NAME)) {
+        if let Some(dir) = dirs::home_dir().map(|h| h.join(".config").join(APP_NAME)) {
+        if !dir.join("config.json").exists() {
+            if let Some(old_dir) = dirs::home_dir().map(|h| h.join(".config").join("moviebox-tui")) {
+                if old_dir.join("config.json").exists() {
+                    let _ = std::fs::create_dir_all(&dir);
+                    let _ = std::fs::copy(old_dir.join("config.json"), dir.join("config.json"));
+                }
+            }
+        }
         return Some(dir);
     }
     let fallback = std::env::temp_dir().join(APP_NAME).join("config");
@@ -121,7 +129,7 @@ pub fn data_dir() -> Option<PathBuf> {
     if let Some(sandbox) = TEST_SANDBOX_DIR.as_ref() {
         return Some(sandbox.join("data").join(APP_NAME));
     }
-    if let Ok(dir) = std::env::var("MOVIEBOX_DATA_DIR") {
+    if let Ok(dir) = std::env::var("YAK_MOVIES_DATA_DIR").or_else(|_| std::env::var("MOVIEBOX_DATA_DIR")) {
         return Some(PathBuf::from(dir));
     }
     if let Some(dir) = dirs::data_dir() {
@@ -154,7 +162,7 @@ pub fn cache_dir() -> PathBuf {
     if let Some(sandbox) = TEST_SANDBOX_DIR.as_ref() {
         return sandbox.join("cache").join(APP_NAME);
     }
-    if let Ok(dir) = std::env::var("MOVIEBOX_CACHE_DIR") {
+    if let Ok(dir) = std::env::var("YAK_MOVIES_CACHE_DIR").or_else(|_| std::env::var("MOVIEBOX_CACHE_DIR")) {
         return PathBuf::from(dir);
     }
     if let Some(dir) = dirs::cache_dir() {

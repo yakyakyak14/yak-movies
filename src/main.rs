@@ -84,10 +84,10 @@ async fn main() -> std::io::Result<()> {
         return Ok(());
     }
     if args.iter().any(|arg| arg == "--help" || arg == "-h") {
-        println!("moviebox-tui {}", env!("CARGO_PKG_VERSION"));
+        println!("YAK-MOVIES v{}", env!("CARGO_PKG_VERSION"));
         println!("A terminal client for finding and streaming movies, TV shows, and anime.\n");
         println!("USAGE:");
-        println!("    moviebox-tui [OPTIONS]\n");
+        println!("    yak-movies [OPTIONS]\n");
         println!("OPTIONS:");
         println!("    -h, --help           Print help information");
         println!("    -v, -V, --version    Print version information\n");
@@ -110,7 +110,7 @@ async fn main() -> std::io::Result<()> {
         .iter()
         .any(|arg| arg == "--version" || arg == "-v" || arg == "-V")
     {
-        println!("moviebox-tui {}", env!("CARGO_PKG_VERSION"));
+        println!("YAK-MOVIES v{}", env!("CARGO_PKG_VERSION"));
         return Ok(());
     }
 
@@ -133,6 +133,7 @@ async fn main() -> std::io::Result<()> {
     let _guard = TerminalGuard;
     crossterm::execute!(
         std::io::stdout(),
+        crossterm::terminal::SetTitle("YAK-MOVIES"),
         crossterm::terminal::EnterAlternateScreen,
         crossterm::event::EnableMouseCapture,
         crossterm::event::EnableFocusChange

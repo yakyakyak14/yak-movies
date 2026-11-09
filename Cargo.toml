@@ -1,5 +1,5 @@
 [package]
-name = "moviebox-tui"
+name = "yak-movies"
 exclude = [
     "docs/",
     "Formula/",
@@ -16,7 +16,7 @@ exclude = [
 ]
 version = "0.1.29"
 edition = "2024"
-description = "Terminal interface to find, download, and stream movies, TV shows, and live TV using local media players."
+description = "YAK-MOVIES: Terminal interface to find, download, and stream movies, TV shows, and live TV using local media players."
 repository = "https://github.com/mesamirh/MovieBox-Tui"
 homepage = "https://github.com/mesamirh/MovieBox-Tui"
 license = "MIT OR Apache-2.0"
@@ -82,3 +82,5 @@ mimalloc = "0.1.52"
 
 [target.'cfg(unix)'.dependencies]
 libc = "0.2"
+
+

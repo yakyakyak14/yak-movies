@@ -599,7 +599,7 @@ impl App {
     }
 
     fn draw_too_small_gate(&self, frame: &mut Frame, area: Rect) -> bool {
-        if area.width < 50 || area.height < 14 {
+        if area.width < 34 || area.height < 10 {
             use ratatui::layout::Alignment;
             use ratatui::text::Line;
             use ratatui::widgets::{Block, Borders, Paragraph};
@@ -609,7 +609,7 @@ impl App {
             }
 
             if area.width < 25 || area.height < 5 {
-                let p = Paragraph::new(format!("{}×{} (min 50×14)", area.width, area.height))
+                let p = Paragraph::new(format!("{}×{} (min 34×10)", area.width, area.height))
                     .style(self.theme.lavender)
                     .alignment(Alignment::Center);
                 frame.render_widget(p, area);
@@ -621,7 +621,7 @@ impl App {
                     "Terminal too small ({}×{}).",
                     area.width, area.height
                 )),
-                Line::from("Minimum required size: 50×14"),
+                Line::from("Minimum required size: 34×10"),
                 Line::from("Enlarge terminal window."),
             ];
 

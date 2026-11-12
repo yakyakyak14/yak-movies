@@ -8,6 +8,7 @@ class MovieboxTui < Formula
   homepage "https://github.com/yakyakyak14/yak-movies"
   version VERSION
   license any_of: ["MIT", "Apache-2.0"]
+  head "https://github.com/yakyakyak14/yak-movies.git", branch: "main"
 
   depends_on "mpv"
 
@@ -27,16 +28,24 @@ class MovieboxTui < Formula
   end
 
   def install
-    if File.exist?("yak-movies")
-      bin.install "yak-movies"
+    if build.head?
+      system "cargo", "install", *std_cargo_args
+    else
+      if File.exist?("yak-movies")
+        bin.install "yak-movies"
+      elsif File.exist?("moviebox-tui")
+        bin.install "moviebox-tui" => "yak-movies"
+      end
       bin.install_symlink "yak-movies" => "moviebox-tui"
-    elsif File.exist?("moviebox-tui")
-      bin.install "moviebox-tui"
-      bin.install_symlink "moviebox-tui" => "yak-movies"
+    end
+
+    if OS.mac?
+      system "codesign", "--force", "--deep", "-s", "-", "#{bin}/yak-movies" rescue nil
+      system "xattr", "-d", "com.apple.quarantine", "#{bin}/yak-movies" rescue nil
     end
   end
 
   test do
-    system "#{bin}/moviebox-tui", "--version"
+    system "#{bin}/yak-movies", "--version"
   end
 end

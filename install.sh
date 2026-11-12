@@ -571,12 +571,21 @@ fi
 install_binary() {
     tar -xzf "$TMP_DIR/$FILE" -C "$TMP_DIR"
     if [ ! -f "$TMP_DIR/$BIN_NAME" ]; then
-        return 1
+        if [ -f "$TMP_DIR/moviebox-tui" ]; then
+            cp "$TMP_DIR/moviebox-tui" "$TMP_DIR/$BIN_NAME"
+        else
+            return 1
+        fi
     fi
 
     rm -f "$APP_PATH"
     cp "$TMP_DIR/$BIN_NAME" "$APP_PATH"
     chmod 755 "$APP_PATH"
+
+    if [ "$OS" = "Darwin" ]; then
+        xattr -dr com.apple.quarantine "$APP_PATH" 2>/dev/null || true
+        codesign --force --deep -s - "$APP_PATH" 2>/dev/null || true
+    fi
 }
 
 run_spinner "[4/4] Installing binary to $INSTALL_DIR" install_binary || exit 1
@@ -596,10 +605,15 @@ if [ "$DRY_RUN" -eq 0 ]; then
         fi
         if [ "$IS_TERMUX" -eq 1 ]; then
             printf "\n  %bℹ%b If Termux rejects the binary, install via cargo:\n" "$C_SAPPHIRE" "$C_RESET" >&2
-            printf "    %bpkg install -y rust clang && cargo install moviebox-tui --locked%b\n\n" "$C_BOLD" "$C_RESET" >&2
+            printf "    %bpkg install -y rust clang && cargo install --git https://github.com/%s.git --bin yak-movies%b\n\n" "$C_BOLD" "$REPO" "$C_RESET" >&2
+        elif [ "$OS" = "Darwin" ]; then
+            printf "\n  %bℹ%b If macOS Gatekeeper (macOS 14 - macOS 27+) rejects the binary:\n" "$C_SAPPHIRE" "$C_RESET" >&2
+            printf "    1. Re-sign binary: %bcodesign --force --deep -s - %s%b\n" "$C_BOLD" "$APP_PATH" "$C_RESET" >&2
+            printf "    2. Clear quarantine: %bxattr -dr com.apple.quarantine %s%b\n" "$C_BOLD" "$APP_PATH" "$C_RESET" >&2
+            printf "    3. Or install via Homebrew: %bbrew install yakyakyak14/yak-movies/yak-movies%b\n\n" "$C_BOLD" "$C_RESET" >&2
         elif [ "$OS" = "Linux" ] && { [ "$ARCH" = "aarch64" ] || [ "$ARCH" = "arm64" ]; }; then
             printf "\n  %bℹ%b If your Linux distribution kernel or environment rejects the binary, install via cargo:\n" "$C_SAPPHIRE" "$C_RESET" >&2
-            printf "    %bcargo install moviebox-tui --locked%b\n\n" "$C_BOLD" "$C_RESET" >&2
+            printf "    %bcargo install --git https://github.com/%s.git --bin yak-movies%b\n\n" "$C_BOLD" "$REPO" "$C_RESET" >&2
         fi
         exit 1
     fi
@@ -662,7 +676,7 @@ else
     fi
 fi
 printf "\n"
-printf "  %b✔ MovieBox-Tui %s successfully installed!%b\n\n" "$C_GREEN" "$TARGET_VERSION" "$C_RESET"
+printf "  %b✔ %s %s successfully installed!%b\n\n" "$C_GREEN" "$APP_NAME" "$TARGET_VERSION" "$C_RESET"
 printf "  %b•%b %bBinary:%b  %b%s%b\n" "$C_MUTED" "$C_RESET" "$C_MUTED" "$C_RESET" "$C_TEXT" "$APP_PATH" "$C_RESET"
 
 if [ -n "$PLAYER_DETECTED" ]; then

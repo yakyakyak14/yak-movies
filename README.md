@@ -37,10 +37,15 @@
 
 ### macOS & Linux
 
-If you have [Homebrew](https://brew.sh/) on macOS:
+If you have [Homebrew](https://brew.sh/) on macOS (accommodates macOS 14 through macOS 27+ / Apple Silicon & Intel):
 ```bash
-brew tap yakyakyak14/yak-movies https://github.com/yakyakyak14/yak-movies.git
+brew tap yakyakyak14/yak-movies
 brew install yak-movies
+```
+
+Or build natively from source for your exact macOS SDK / macOS 27:
+```bash
+brew install yakyakyak14/yak-movies/yak-movies-source
 ```
 
 > **Note:** If Homebrew prompts for tap verification on initial install, run `brew trust yakyakyak14/yak-movies`.

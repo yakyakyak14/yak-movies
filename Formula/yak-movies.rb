@@ -8,6 +8,7 @@ class YakMovies < Formula
   homepage "https://github.com/yakyakyak14/yak-movies"
   version VERSION
   license any_of: ["MIT", "Apache-2.0"]
+  head "https://github.com/yakyakyak14/yak-movies.git", branch: "main"
 
   depends_on "mpv"
 
@@ -27,13 +28,34 @@ class YakMovies < Formula
   end
 
   def install
-    if File.exist?("yak-movies")
-      bin.install "yak-movies"
-      bin.install_symlink "yak-movies" => "moviebox-tui"
-    elsif File.exist?("moviebox-tui")
-      bin.install "moviebox-tui" => "yak-movies"
+    if build.head?
+      system "cargo", "install", *std_cargo_args
+    else
+      if File.exist?("yak-movies")
+        bin.install "yak-movies"
+      elsif File.exist?("moviebox-tui")
+        bin.install "moviebox-tui" => "yak-movies"
+      end
       bin.install_symlink "yak-movies" => "moviebox-tui"
     end
+
+    # Ad-hoc code signing and quarantine removal for macOS 14 through macOS 27+ / Darwin 20-27+
+    if OS.mac?
+      system "codesign", "--force", "--deep", "-s", "-", "#{bin}/yak-movies" rescue nil
+      system "xattr", "-d", "com.apple.quarantine", "#{bin}/yak-movies" rescue nil
+    end
+  end
+
+  def caveats
+    <<~EOS
+      YAK-movies requires a media player such as mpv, VLC, or IINA.
+      To install mpv:
+        brew install mpv
+
+      Compatibility:
+        Accommodates macOS 14 through macOS 27+ (Darwin 20-27+) across both
+        Apple Silicon (arm64) and Intel (x86_64) architectures.
+    EOS
   end
 
   test do

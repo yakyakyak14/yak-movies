@@ -596,7 +596,7 @@ impl App {
                             );
                         }
                         4 => {
-                            const REPO_URL: &str = "https://github.com/mesamirh/MovieBox-Tui";
+                            const REPO_URL: &str = "https://github.com/yakyakyak14/yak-movies";
                             match crate::net::open_external_url(REPO_URL) {
                                 Ok(()) => {
                                     self.state.notify(
@@ -748,14 +748,14 @@ impl App {
                     Ok(None) => {
                         if self.state.manual_update_check {
                             self.state.set_status_long(format!(
-                                "MovieBox-Tui is up to date (v{}).",
+                                "YAK-MOVIES is up to date (v{}).",
                                 env!("CARGO_PKG_VERSION")
                             ));
                             self.state.notify(
                                 NotificationKind::Success,
                                 "Up to date",
                                 format!(
-                                    "MovieBox-Tui v{} is the latest version.",
+                                    "YAK-MOVIES v{} is the latest version.",
                                     env!("CARGO_PKG_VERSION")
                                 ),
                             );
@@ -782,7 +782,7 @@ impl App {
                                 NotificationKind::Info,
                                 "Update Available",
                                 format!(
-                                    "MovieBox-Tui v{version} is available. Exit search to view."
+                                    "YAK-MOVIES v{version} is available. Exit search to view."
                                 ),
                             );
                         } else if self.state.is_playing || self.state.download_progress.is_some() {
@@ -880,7 +880,7 @@ impl App {
                         self.state.notify(
                             NotificationKind::Success,
                             "Update Installed",
-                            "Restarting MovieBox-Tui...",
+                            "Restarting YAK-MOVIES...",
                         );
 
                         crossterm::terminal::disable_raw_mode().ok();

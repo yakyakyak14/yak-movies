@@ -314,21 +314,21 @@ impl App {
                 crate::tui::state::AppMode::Streaming => {
                     if self.state.active_provider == crate::providers::models::ProviderKind::Addons
                     {
-                        "MovieBox-Tui — Addons".to_string()
+                        "YAK-movies — Addons".to_string()
                     } else {
-                        "MovieBox-Tui — Streaming".to_string()
+                        "YAK-movies".to_string()
                     }
                 }
-                crate::tui::state::AppMode::Tv => "MovieBox-Tui — Live TV".to_string(),
+                crate::tui::state::AppMode::Tv => "YAK-movies — Live TV".to_string(),
             },
             Screen::Details => {
                 if let Some(details) = &self.state.selected_details {
                     let clean = crate::providers::moviebox::clean_moviebox_title(&details.title);
                     if !clean.is_empty() {
-                        return format!("MovieBox-Tui — {clean}");
+                        return format!("YAK-movies — {clean}");
                     }
                 }
-                "MovieBox-Tui — Details".to_string()
+                "YAK-movies — Details".to_string()
             }
         }
     }

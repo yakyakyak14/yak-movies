@@ -18,17 +18,17 @@ try {
 } catch {}
 Set-StrictMode -Version Latest
 
-$AppName = "MovieBox-Tui"
-$BinName = "moviebox-tui.exe"
-$Repo = "mesamirh/MovieBox-Tui"
+$AppName = "YAK-movies"
+$BinName = "yak-movies.exe"
+$Repo = "yakyakyak14/yak-movies"
 $DefaultInstallDir = Join-Path $env:LOCALAPPDATA "Programs\MovieBox-Tui\bin"
 
 if ($Help) {
     Write-Host @"
-MovieBox-TUI Installer (Windows PowerShell)
+YAK-movies Installer (Windows PowerShell)
 
 USAGE:
-    irm https://raw.githubusercontent.com/mesamirh/MovieBox-Tui/main/install.ps1 | iex
+    irm https://raw.githubusercontent.com/yakyakyak14/yak-movies/main/install.ps1 | iex
     .\install.ps1 [OPTIONS]
 
 OPTIONS:

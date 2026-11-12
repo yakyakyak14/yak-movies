@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-APP_NAME="MovieBox-Tui"
-BIN_NAME="moviebox-tui"
-REPO="mesamirh/MovieBox-Tui"
+APP_NAME="YAK-movies"
+BIN_NAME="yak-movies"
+REPO="yakyakyak14/yak-movies"
 DEFAULT_INSTALL_DIR="$HOME/.local/bin"
 
 VERSION=""
@@ -57,19 +57,19 @@ while [ $# -gt 0 ]; do
             ;;
         --help|-h)
             cat << 'EOF'
-MovieBox-TUI Installer
+YAK-movies Installer
 
 USAGE:
-    curl -fsSL https://raw.githubusercontent.com/mesamirh/MovieBox-Tui/main/install.sh | bash -s -- [OPTIONS]
+    curl -fsSL https://raw.githubusercontent.com/yakyakyak14/yak-movies/main/install.sh | bash -s -- [OPTIONS]
     ./install.sh [OPTIONS]
 
 OPTIONS:
-    -v, --version <tag>    Install a specific version (e.g. v0.1.14)
+    -v, --version <tag>    Install a specific version (e.g. v0.1.29)
         --dir <path>       Install binary to a custom directory
     -f, --force            Reinstall even if already at the latest version
         --dry-run          Perform preflight checks without writing files
         --no-modify-path   Do not modify shell profile configuration
-        --uninstall        Uninstall MovieBox-TUI from your system
+        --uninstall        Uninstall YAK-movies from your system
     -h, --help             Show this help message
 EOF
             exit 0

@@ -673,16 +673,16 @@ async fn test_contextual_window_title() {
     app.state_mut()
         .set_mode(moviebox_tui::tui::state::AppMode::Streaming);
     app.state_mut().active_provider = moviebox_tui::providers::models::ProviderKind::MovieBox;
-    assert_eq!(app.contextual_title(), "MovieBox-Tui — Streaming");
+    assert_eq!(app.contextual_title(), "YAK-movies");
 
     app.state_mut()
         .set_mode(moviebox_tui::tui::state::AppMode::Tv);
-    assert_eq!(app.contextual_title(), "MovieBox-Tui — Live TV");
+    assert_eq!(app.contextual_title(), "YAK-movies — Live TV");
 
     app.state_mut()
         .set_mode(moviebox_tui::tui::state::AppMode::Streaming);
     app.state_mut().active_provider = moviebox_tui::providers::models::ProviderKind::Addons;
-    assert_eq!(app.contextual_title(), "MovieBox-Tui — Addons");
+    assert_eq!(app.contextual_title(), "YAK-movies — Addons");
 
     app.state_mut().active_screen = Screen::Details;
     app.state_mut().selected_details = Some(moviebox_tui::models::MediaDetails {
@@ -706,7 +706,7 @@ async fn test_contextual_window_title() {
         seasons: vec![],
         dubs: vec![],
     });
-    assert_eq!(app.contextual_title(), "MovieBox-Tui — Inception");
+    assert_eq!(app.contextual_title(), "YAK-movies — Inception");
 }
 #[tokio::test]
 async fn test_esc_in_normal_mode_focuses_search_bar_when_results_present() {

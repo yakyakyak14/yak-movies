@@ -133,7 +133,7 @@ async fn main() -> std::io::Result<()> {
     let _guard = TerminalGuard;
     crossterm::execute!(
         std::io::stdout(),
-        crossterm::terminal::SetTitle("YAK-MOVIES"),
+        crossterm::terminal::SetTitle("YAK-movies"),
         crossterm::terminal::EnterAlternateScreen,
         crossterm::event::EnableMouseCapture,
         crossterm::event::EnableFocusChange

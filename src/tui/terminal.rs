@@ -110,7 +110,10 @@ pub fn background_is_light() -> bool {
 }
 
 pub fn set_window_title(title: &str) -> std::io::Result<()> {
-    crossterm::execute!(std::io::stdout(), crossterm::terminal::SetTitle(title))
+    use std::io::Write;
+    let res = crossterm::execute!(std::io::stdout(), crossterm::terminal::SetTitle(title));
+    let _ = std::io::stdout().flush();
+    res
 }
 #[cfg(test)]
 mod tests {

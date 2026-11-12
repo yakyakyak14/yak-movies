@@ -32,7 +32,7 @@ impl InstallationEnvironment {
                 Some("This installation is managed by Scoop. Run: scoop update moviebox-tui")
             }
             Self::Termux => Some(
-                "Android / Termux update: run 'curl -fsSL https://raw.githubusercontent.com/mesamirh/MovieBox-Tui/main/install.sh | bash'",
+                "Android / Termux update: run 'curl -fsSL https://raw.githubusercontent.com/yakyakyak14/yak-movies/main/install.sh | bash'",
             ),
             Self::Flatpak => Some("Running inside Flatpak. Update via: flatpak update"),
             Self::Snap => Some("Running inside Snap. Update via: sudo snap refresh moviebox-tui"),

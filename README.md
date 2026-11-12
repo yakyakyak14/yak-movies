@@ -39,28 +39,28 @@
 
 If you have [Homebrew](https://brew.sh/) on macOS:
 ```bash
-brew tap mesamirh/moviebox-tui https://github.com/mesamirh/MovieBox-Tui
-brew install moviebox-tui
+brew tap yakyakyak14/yak-movies https://github.com/yakyakyak14/yak-movies.git
+brew install yak-movies
 ```
 
-> **Note:** If Homebrew prompts for tap verification on initial install, run `brew trust mesamirh/moviebox-tui`.
+> **Note:** If Homebrew prompts for tap verification on initial install, run `brew trust yakyakyak14/yak-movies`.
 
 Direct install via Terminal (macOS & Linux, no package manager needed):
 ```bash
-curl -fsSL https://raw.githubusercontent.com/mesamirh/MovieBox-Tui/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/yakyakyak14/yak-movies/main/install.sh | bash
 ```
 
 ### Windows
 
 If you have [Scoop](https://scoop.sh/) (recommended):
 ```powershell
-scoop bucket add moviebox https://github.com/mesamirh/MovieBox-Tui
-scoop install moviebox-tui
+scoop bucket add yak-movies https://github.com/yakyakyak14/yak-movies
+scoop install yak-movies
 ```
 
 Direct install via PowerShell (no package manager needed):
 ```powershell
-irm https://raw.githubusercontent.com/mesamirh/MovieBox-Tui/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/yakyakyak14/yak-movies/main/install.ps1 | iex
 ```
 
 > **SmartScreen prompt:** If Windows displays *"Windows protected your PC"*, click **More info** → **Run anyway**.
@@ -68,7 +68,7 @@ irm https://raw.githubusercontent.com/mesamirh/MovieBox-Tui/main/install.ps1 | i
 ### Android (Termux)
 ```bash
 pkg update && pkg install -y curl tar termux-tools termux-am
-curl -fsSL https://raw.githubusercontent.com/mesamirh/MovieBox-Tui/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/yakyakyak14/yak-movies/main/install.sh | bash
 termux-setup-storage
 ```
 
@@ -76,13 +76,13 @@ termux-setup-storage
 <summary><b>Cargo & Source Build</b></summary>
 
 ```bash
-cargo install moviebox-tui --locked
+cargo install --git https://github.com/yakyakyak14/yak-movies.git --bin yak-movies
 ```
 
 From source:
 ```bash
-git clone https://github.com/mesamirh/MovieBox-Tui.git
-cd MovieBox-Tui
+git clone https://github.com/yakyakyak14/yak-movies.git
+cd yak-movies
 cargo build --release --locked
 ```
 
@@ -93,7 +93,7 @@ cargo build --release --locked
 
 ```bash
 sha256sum -c SHA256SUMS --ignore-missing
-gh attestation verify <archive-file> -R mesamirh/MovieBox-Tui
+gh attestation verify <archive-file> -R yakyakyak14/yak-movies
 ```
 
 </details>
@@ -105,9 +105,9 @@ Re-run install command (`curl ... | bash` or `irm ... | iex`) and select `2) Uni
 
 Or via package manager:
 ```bash
-brew uninstall moviebox-tui     # Homebrew
-scoop uninstall moviebox-tui    # Scoop
-cargo uninstall moviebox-tui    # Cargo
+brew uninstall yak-movies       # Homebrew
+scoop uninstall yak-movies      # Scoop
+cargo uninstall yak-movies      # Cargo
 ```
 
 </details>

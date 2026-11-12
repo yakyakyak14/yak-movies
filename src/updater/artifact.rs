@@ -81,7 +81,7 @@ impl Release {
             return Some(ReleaseAsset {
                 name: expected.to_string(),
                 download_url: format!(
-                    "https://github.com/mesamirh/MovieBox-Tui/releases/download/{}/{expected}",
+                    "https://github.com/yakyakyak14/yak-movies/releases/download/{}/{expected}",
                     self.tag_name
                 ),
                 size: None,
@@ -98,7 +98,7 @@ impl Release {
             return Some(ReleaseAsset {
                 name: "SHA256SUMS".to_string(),
                 download_url: format!(
-                    "https://github.com/mesamirh/MovieBox-Tui/releases/download/{}/SHA256SUMS",
+                    "https://github.com/yakyakyak14/yak-movies/releases/download/{}/SHA256SUMS",
                     self.tag_name
                 ),
                 size: None,
